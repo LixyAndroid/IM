@@ -2,6 +2,7 @@ package com.example.im
 
 import android.os.Handler
 import com.example.im.contract.SplashContract
+import com.example.im.presenter.SplashPresenter
 import org.jetbrains.anko.startActivity
 
 /**
@@ -10,12 +11,21 @@ import org.jetbrains.anko.startActivity
  */
 class SplashActivity : BaseActivity() ,SplashContract.View{
 
+    val presenter = SplashPresenter(this)
+
     companion object{
         val DELAY = 2000L
     }
 
     val handler by lazy {
         Handler()
+    }
+
+    override fun init() {
+        super.init()
+
+        presenter.checkLoginStatus()
+
     }
 
 

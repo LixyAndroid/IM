@@ -7,7 +7,7 @@ package com.example.im.contract
 interface SplashContract {
 
     interface  Presenter:BasePresenter{
-        fun checkLogin()
+        fun checkLoginStatus()
     }
 
 
