@@ -2,6 +2,7 @@ package com.example.im.presenter
 
 import android.view.View
 import com.example.im.contract.SplashContract
+import com.hyphenate.chat.EMClient
 
 /**
  * @author  Mloong
@@ -14,7 +15,8 @@ class SplashPresenter(val  view: SplashContract.View) : SplashContract.Presenter
         if (isLoggedIn()) view.onLoggedIn() else view.onNotLoggedIn()
     }
 
-    private fun isLoggedIn(): Boolean  = false
+    private fun isLoggedIn(): Boolean  =
+            EMClient.getInstance().isConnected && EMClient.getInstance().isLoggedInBefore
 
 
 

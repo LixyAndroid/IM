@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.1'
@@ -32,16 +32,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
-
-
-    implementation "org.jetbrains.anko:anko-commons:0.10.8"//Anko通用库
-    implementation "org.jetbrains.anko:anko-sqlite:0.10.8"//Anko sqlite库
-
-    implementation ('com.roughike:bottom-bar:2.3.1'){
+    implementation 'org.jetbrains.anko:anko-commons:0.10.8'
+    //Anko通用库
+    implementation 'org.jetbrains.anko:anko-sqlite:0.10.8'
+    //Anko sqlite库
+    implementation('com.roughike:bottom-bar:2.3.1') {
         exclude module: 'design'
     }
-
     implementation 'cn.bmob.android:bmob-im:2.1.4@aar'
     implementation 'cn.bmob.android:bmob-sdk:3.7.3'
+    implementation files('libs/hyphenatechat_3.6.0.jar')
 }
