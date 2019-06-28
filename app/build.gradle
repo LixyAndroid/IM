@@ -21,6 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
+    useLibrary 'org.apache.http.legacy'
+
+    //自3.6.0开始需要java8的支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -42,4 +51,5 @@ dependencies {
     implementation 'cn.bmob.android:bmob-im:2.1.4@aar'
     implementation 'cn.bmob.android:bmob-sdk:3.7.3'
     implementation files('libs/hyphenatechat_3.6.0.jar')
+
 }

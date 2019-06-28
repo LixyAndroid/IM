@@ -1,9 +1,12 @@
 package com.example.im.presenter
 
 import android.view.View
+import com.example.im.adapter.EMCallBackAdapter
 import com.example.im.contract.LoginContract
 import com.example.im.extentions.isValidPassword
 import com.example.im.extentions.isValidUserName
+import com.hyphenate.EMCallBack
+import com.hyphenate.chat.EMClient
 
 /**
  * @author  Mloong
@@ -31,6 +34,24 @@ class LoginPresenter(val  view: LoginContract.View):LoginContract.Presenter {
     }
 
     private fun loginEaseMob(userName: String, password: String) {
+
+        EMClient.getInstance().login(userName,password,object : EMCallBackAdapter() {
+
+            override fun onSuccess() {
+                EMClient.getInstance().groupManager().loadAllGroups()
+                EMClient.getInstance().chatManager().loadAllConversations()
+                //在主线程通知View层
+
+                uiThread { view.onLoggedInSuccess() }
+
+            }
+
+            override fun onError(p0: Int, p1: String?) {
+                uiThread { view.onLoggedInFailed() }
+            }
+
+
+        })
 
     }
 
