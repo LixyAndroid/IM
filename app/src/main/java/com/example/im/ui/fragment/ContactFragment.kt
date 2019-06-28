@@ -12,6 +12,7 @@ import com.hyphenate.EMContactListener
 import com.hyphenate.chat.EMClient
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.header.*
+import kotlinx.android.synthetic.main.view_contact_item.*
 import org.jetbrains.anko.toast
 
 /**
@@ -78,6 +79,7 @@ class ContactFragment :BaseFragment(),ContactContract.View{
 
                 section.visibility = View.VISIBLE
                 section.text = firstLetter
+                recyclerView.smoothScrollToPosition(getPosition(firstLetter))
             }
 
             override fun onSlideFinish() {
@@ -90,5 +92,12 @@ class ContactFragment :BaseFragment(),ContactContract.View{
         presenter.loadContacts()
 
     }
+
+    private fun getPosition(firstLetter:String): Int =
+        presenter.contactListItems.binarySearch {
+            contactListItem -> contactListItem.firstLetter.minus(firstLetter[0])
+        }
+
+
 
 }
