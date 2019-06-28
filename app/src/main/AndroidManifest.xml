@@ -53,7 +53,7 @@
 
 
         <activity android:name=".LoginActivity"/>
-
+        <activity android:name=".RegisterActivity"/>
 
 
         <!-- 设置环信应用的AppKey -->
