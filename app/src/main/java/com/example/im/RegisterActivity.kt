@@ -13,6 +13,8 @@ import org.jetbrains.anko.toast
 class RegisterActivity :BaseActivity(),RegisterContract.View {
 
 
+
+
     val presenter = RegisterPresenter(this)
 
     override fun init() {
@@ -54,7 +56,7 @@ class RegisterActivity :BaseActivity(),RegisterContract.View {
         confirmPassword.error = getString(R.string.confirm_password_error)
     }
 
-    override fun onStratRegister() {
+    override fun onStartRegister() {
        showProgress(getString(R.string.registering))
     }
 
@@ -64,9 +66,15 @@ class RegisterActivity :BaseActivity(),RegisterContract.View {
         finish()
     }
 
-    override fun onRegisterFailde() {
+    override fun onRegisterFailed() {
         dismissProgress()
         toast(R.string.register_failed)
+    }
+
+    override fun onUserExist() {
+
+        dismissProgress()
+        toast(R.string.user_already_exist)
     }
 
     override fun getLayoutReId(): Int  = R.layout.activity_register

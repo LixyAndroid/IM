@@ -15,9 +15,10 @@ interface RegisterContract {
         fun onPasswordError()
         fun onConfirmPasswordError()
 
-        fun onStratRegister()
+        fun onStartRegister()
         fun onRegisterSuccess()
-        fun onRegisterFailde()
+        fun onRegisterFailed()
+        fun onUserExist()
 
     }
 }

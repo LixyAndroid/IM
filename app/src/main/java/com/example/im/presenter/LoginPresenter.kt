@@ -1,11 +1,9 @@
 package com.example.im.presenter
 
-import android.view.View
 import com.example.im.adapter.EMCallBackAdapter
 import com.example.im.contract.LoginContract
 import com.example.im.extentions.isValidPassword
 import com.example.im.extentions.isValidUserName
-import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
 
 /**

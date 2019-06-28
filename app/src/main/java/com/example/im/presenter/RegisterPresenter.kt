@@ -27,7 +27,7 @@ class RegisterPresenter(val view: RegisterContract.View):RegisterContract.Presen
                 //检查确认密码
                 if (password.equals(confirmPassword)){
                     //密码和确认密码一致
-                    view.onStratRegister()
+                    view.onStartRegister()
                     //开始注册
                     registerBmob(userName,password)
 
@@ -49,7 +49,7 @@ class RegisterPresenter(val view: RegisterContract.View):RegisterContract.Presen
         //此处替换为你的密码
         bu.setPassword(password)
         bu.signUp<BmobUser>(object : SaveListener<BmobUser>() {
-            override fun done(s: BmobUser, e: BmobException?) {
+            override fun done(s: BmobUser?, e: BmobException?) {
                 if (e == null) {
                     //注册成功
                     //注册到环信
@@ -57,7 +57,10 @@ class RegisterPresenter(val view: RegisterContract.View):RegisterContract.Presen
 
                 } else {
                    //注册失败
-                    view.onRegisterFailde()
+                    //注册失败
+                    if (e.errorCode == 202) {
+                        view.onUserExist()
+                    } else  view.onRegisterFailed()
                 }
 
             }
@@ -76,13 +79,13 @@ class RegisterPresenter(val view: RegisterContract.View):RegisterContract.Presen
 
                     //注册成功
                     uiThread { view.onRegisterSuccess() }
-                }catch(e:HyphenateException){
+                }catch(e:HyphenateException) {
 
-                    //注册失败
-                    uiThread { view.onRegisterFailde() }
+                    uiThread{ view.onRegisterFailed() }
+
+
+
                 }
-
-
 
         }
 
