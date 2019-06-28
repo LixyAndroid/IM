@@ -11,7 +11,11 @@ import com.example.im.R
 import com.example.im.data.ContactListItem
 import com.example.im.ui.activity.ChatActivity
 import com.example.im.widget.ContactListItemView
+import com.hyphenate.EMCallBack
+import com.hyphenate.chat.EMClient
+import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 /**
  * @author  Mloong
@@ -45,7 +49,9 @@ class ContactListAdapter(val context: Context, val contactListItems: MutableList
                     .setMessage(message)
                     .setNegativeButton(R.string.cancel,null)
                     .setPositiveButton(R.string.confirm,DialogInterface.OnClickListener { dialogInterface, i ->
+
                         deleteFriend(userName)
+
                     }).show()
             //返回值
                  true
@@ -53,7 +59,21 @@ class ContactListAdapter(val context: Context, val contactListItems: MutableList
     }
 
     private fun deleteFriend(userName: String) {
+        EMClient.getInstance().contactManager().aysncDeleteContact(userName,object : EMCallBackAdapter(){
 
+            override fun onSuccess() {
+
+                context.runOnUiThread { toast(R.string.delete_friend_success) }
+
+            }
+
+
+            override fun onError(p0: Int, p1: String?) {
+
+                context.runOnUiThread { toast(R.string.delete_friend_failed) }
+            }
+
+        })
 
     }
 
