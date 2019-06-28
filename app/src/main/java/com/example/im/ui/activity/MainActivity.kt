@@ -5,11 +5,15 @@ import com.example.im.R
 import com.example.im.factory.FragmentFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : BaseActivity() {
 
     override fun getLayoutReId(): Int = R.layout.activity_main
 
     override fun init() {
+
+
+
         super.init()
 
         bottomBar.setOnTabSelectListener {tabId ->
