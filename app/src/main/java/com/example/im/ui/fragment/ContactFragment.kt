@@ -7,12 +7,14 @@ import com.example.im.adapter.ContactListAdapter
 import com.example.im.adapter.EMContactListenerAdapter
 import com.example.im.contract.ContactContract
 import com.example.im.presenter.ContactPresenter
+import com.example.im.ui.activity.AddFriendActivity
 import com.example.im.widget.SlideBar
 import com.hyphenate.EMContactListener
 import com.hyphenate.chat.EMClient
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.header.*
 import kotlinx.android.synthetic.main.view_contact_item.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 /**
@@ -44,8 +46,11 @@ class ContactFragment :BaseFragment(),ContactContract.View{
     override fun init() {
         super.init()
 
+        //添加好友
         headerTitle.text = getString(R.string.contact)
         add.visibility = View.VISIBLE
+        add.setOnClickListener { context?.startActivity<AddFriendActivity>() }
+
 
         swipeRefreshLayout.apply {
             setColorSchemeResources(R.color.qq_blue)
