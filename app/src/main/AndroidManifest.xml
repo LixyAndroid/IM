@@ -34,9 +34,9 @@
 
 
 
-        <meta-data
-                android:name="Bmob_APP_KEY"
-                android:value="2887467008a23530373c4c5ca79772ee" />
+        <!--<meta-data-->
+                <!--android:name="Bmob_APP_KEY"-->
+                <!--android:value="2887467008a23530373c4c5ca79772ee" />-->
 
 
         <activity android:name=".MainActivity">

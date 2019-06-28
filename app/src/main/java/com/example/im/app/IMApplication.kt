@@ -1,6 +1,7 @@
 package com.example.im.app
 
 import android.app.Application
+import cn.bmob.v3.Bmob
 import com.example.im.BuildConfig
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMOptions
@@ -28,5 +29,8 @@ class IMApplication :Application() {
         EMClient.getInstance().init(applicationContext, options)
     //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(BuildConfig.DEBUG)
+
+        //第一：默认初始化
+        Bmob.initialize(this, "2887467008a23530373c4c5ca79772ee")
     }
 }
