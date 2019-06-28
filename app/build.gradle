@@ -8,6 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
+
         applicationId "com.example.im"
         minSdkVersion 19
         targetSdkVersion 29

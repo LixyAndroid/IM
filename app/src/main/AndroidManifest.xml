@@ -32,11 +32,6 @@
 
 
 
-        <!--<meta-data-->
-                <!--android:name="Bmob_APP_KEY"-->
-                <!--android:value="2887467008a23530373c4c5ca79772ee" />-->
-
-
         <activity android:name=".MainActivity">
 
         </activity>
@@ -76,6 +71,14 @@
         </receiver>
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <provider
+                android:name="cn.bmob.v3.util.BmobContentProvider"
+                android:authorities="com.example.im.BmobContentProvider">
+        </provider>
     </application>
 
 </manifest>

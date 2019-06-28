@@ -1,7 +1,5 @@
 package com.example.im
 
-import android.view.KeyEvent
-import android.widget.TextView
 import com.example.im.contract.RegisterContract
 import com.example.im.presenter.RegisterPresenter
 import kotlinx.android.synthetic.main.activity_register.*
@@ -62,7 +60,7 @@ class RegisterActivity :BaseActivity(),RegisterContract.View {
 
     override fun onRegisterSuccess() {
         dismissProgress()
-
+        toast(R.string.register_success)
         finish()
     }
 
