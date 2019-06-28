@@ -24,11 +24,16 @@ class ContactPresenter(val  view: ContactContract.View) :ContactContract.Present
                 //根据首字符排序
                 usernames.sortBy { it[0] }
 
-                usernames.forEach{
-                    val  contactListItem = ContactListItem(it,it[0].toUpperCase())
+                usernames.forEachIndexed { index, s ->
+                    //判断是否显示首字符
+                    val showFirstLetter = index == 0 || s[0] != usernames[index - 1][0]
+
+
+                    val  contactListItem = ContactListItem(s,s[0].toUpperCase(),showFirstLetter)
 
                     contactListItems.add(contactListItem)
                 }
+
 
 
                 uiThread { view.onLoadContactSuccess() }
