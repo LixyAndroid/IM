@@ -7,6 +7,7 @@ import com.example.im.adapter.ContactListAdapter
 import com.example.im.adapter.EMContactListenerAdapter
 import com.example.im.contract.ContactContract
 import com.example.im.presenter.ContactPresenter
+import com.example.im.widget.SlideBar
 import com.hyphenate.EMContactListener
 import com.hyphenate.chat.EMClient
 import kotlinx.android.synthetic.main.fragment_contacts.*
@@ -70,6 +71,21 @@ class ContactFragment :BaseFragment(),ContactContract.View{
             }
 
         })
+
+
+        slideBar.onSectionChangeListener = object : SlideBar.OnSectionChangeListener{
+            override fun onSectionChange(firstLetter: String) {
+
+                section.visibility = View.VISIBLE
+                section.text = firstLetter
+            }
+
+            override fun onSlideFinish() {
+                section.visibility = View.GONE
+
+            }
+
+        }
 
         presenter.loadContacts()
 
