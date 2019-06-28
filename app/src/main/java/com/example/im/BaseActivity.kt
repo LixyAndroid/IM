@@ -1,5 +1,6 @@
 package com.example.im
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
@@ -8,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
  * date  2019/6/27 21:33
  */
 abstract class BaseActivity :AppCompatActivity(){
+
+    val  progressDialog by lazy {
+        ProgressDialog(this)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,4 +33,13 @@ abstract class BaseActivity :AppCompatActivity(){
 
 
 
+    fun showProgress(message:String){
+        progressDialog.setMessage(message)
+        progressDialog.show()
+    }
+
+    fun dismissProgress(){
+
+        progressDialog.dismiss()
+    }
 }
