@@ -1,7 +1,8 @@
-package com.example.im
+package com.example.im.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.im.R
 
 class MainActivity : AppCompatActivity() {
 

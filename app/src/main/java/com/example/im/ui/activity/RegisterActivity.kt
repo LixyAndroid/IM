@@ -1,5 +1,6 @@
-package com.example.im
+package com.example.im.ui.activity
 
+import com.example.im.R
 import com.example.im.contract.RegisterContract
 import com.example.im.presenter.RegisterPresenter
 import kotlinx.android.synthetic.main.activity_register.*
@@ -10,7 +11,7 @@ import org.jetbrains.anko.toast
  * @author  Mloong
  * date  2019/6/28 15:30
  */
-class RegisterActivity :BaseActivity(),RegisterContract.View {
+class RegisterActivity : BaseActivity(),RegisterContract.View {
 
 
 

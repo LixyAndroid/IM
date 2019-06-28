@@ -31,10 +31,10 @@
 
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
 
         </activity>
-        <activity android:name=".SplashActivity"
+        <activity android:name=".ui.activity.SplashActivity"
         android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -44,8 +44,8 @@
         </activity>
 
 
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".ui.activity.LoginActivity"/>
+        <activity android:name=".ui.activity.RegisterActivity"/>
 
 
         <!-- 设置环信应用的AppKey -->
@@ -74,10 +74,12 @@
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
+
         <provider
                 android:name="cn.bmob.v3.util.BmobContentProvider"
                 android:authorities="com.example.im.BmobContentProvider">
         </provider>
+
     </application>
 
 </manifest>

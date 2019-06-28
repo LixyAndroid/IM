@@ -1,6 +1,7 @@
-package com.example.im
+package com.example.im.ui.activity
 
 import android.os.Handler
+import com.example.im.R
 import com.example.im.contract.SplashContract
 import com.example.im.presenter.SplashPresenter
 import org.jetbrains.anko.startActivity

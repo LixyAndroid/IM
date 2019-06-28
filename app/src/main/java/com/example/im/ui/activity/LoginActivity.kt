@@ -1,13 +1,13 @@
-package com.example.im
+package com.example.im.ui.activity
 
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import com.example.im.R
 import com.example.im.contract.LoginContract
 import com.example.im.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import java.util.jar.Manifest
 
 /**
  * @author  Mloong
