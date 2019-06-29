@@ -2,9 +2,12 @@ package com.example.im.ui.activity
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import com.example.im.R
 import com.example.im.contract.ChatContract
+import com.example.im.presenter.ChatPresenter
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.header.*
 import org.jetbrains.anko.toast
@@ -15,6 +18,10 @@ import org.jetbrains.anko.toast
  */
 class ChatActivity:BaseActivity(),ChatContract.View {
 
+
+    val presenter = ChatPresenter(this)
+
+    lateinit var username :String
     override fun onStartSendMessage() {
         //通知RecyclerView刷新列表
         recyclerView.adapter?.notifyDataSetChanged()
@@ -43,6 +50,14 @@ class ChatActivity:BaseActivity(),ChatContract.View {
         super.init()
         initHeader()
         initEditText()
+        send.setOnClickListener { send() }
+
+    }
+
+    private  fun send(){
+        hideSoftKeyboard()
+        val message = edit.text.trim().toString()
+        presenter.sendMessage(username,message)
     }
 
     private fun initEditText() {
@@ -63,6 +78,12 @@ class ChatActivity:BaseActivity(),ChatContract.View {
             }
 
         })
+
+        edit.setOnEditorActionListener { p0, p1, p2 ->
+            send()
+            true
+        }
+
     }
 
     private fun initHeader() {
@@ -70,7 +91,7 @@ class ChatActivity:BaseActivity(),ChatContract.View {
         back.setOnClickListener { finish() }
 
         //获取聊天的用户名
-        val username = intent.getStringExtra("username")
+        username = intent.getStringExtra("username")
 
         val  titleString = String.format(getString(R.string.chat_title),username)
 
