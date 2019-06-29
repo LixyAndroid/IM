@@ -35,7 +35,10 @@ class ChatActivity:BaseActivity(),ChatContract.View {
 
             presenter.addMessage(username,p0)
 
-            runOnUiThread { recyclerView.adapter!!.notifyDataSetChanged() }
+            runOnUiThread {
+                recyclerView.adapter!!.notifyDataSetChanged()
+                scrollToBottom()
+            }
         }
 
 
@@ -55,6 +58,12 @@ class ChatActivity:BaseActivity(),ChatContract.View {
         //清空编辑框
         edit.text.clear()
 
+        scrollToBottom()
+
+    }
+
+    private fun scrollToBottom() {
+        recyclerView.scrollToPosition(presenter.messages.size - 1)
     }
 
     override fun onSendMessageFailed() {
@@ -95,7 +104,7 @@ class ChatActivity:BaseActivity(),ChatContract.View {
 
     private  fun send(){
         hideSoftKeyboard()
-        val message = edit.text.trim().toString()
+        val message = edit?.text?.trim().toString()
         presenter.sendMessage(username,message)
     }
 

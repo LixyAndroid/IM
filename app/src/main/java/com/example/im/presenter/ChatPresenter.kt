@@ -19,7 +19,7 @@ class ChatPresenter(val view: ChatContract.View):ChatContract.Presenter {
         //创建一条消息
         val emMessage = EMMessage.createTxtSendMessage(message,contrat)
 
-        emMessage.setMessageStatusCallback(object : EMCallBackAdapter(){
+        emMessage?.setMessageStatusCallback(object : EMCallBackAdapter(){
 
             override fun onSuccess() {
                 uiThread { view.onSendMessageSuccess() }
