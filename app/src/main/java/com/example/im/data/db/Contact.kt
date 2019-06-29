@@ -3,6 +3,7 @@ package com.example.im.data.db
 /**
  * @author  Mloong
  * date  2019/6/29 12:53
+ * 实体类
  */
  data  class Contact(val map: MutableMap<String,Any?>) {
 
