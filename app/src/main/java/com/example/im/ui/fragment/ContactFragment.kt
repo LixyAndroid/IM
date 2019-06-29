@@ -42,8 +42,8 @@ class ContactFragment :BaseFragment(),ContactContract.View{
     }
 
     override fun onLoadContactSuccess() {
-        swipeRefreshLayout.isRefreshing = false
-        recyclerView.adapter?.notifyDataSetChanged()
+        swipeRefreshLayout?.isRefreshing = false
+        recyclerView?.adapter?.notifyDataSetChanged()
 
 
     }
@@ -72,6 +72,7 @@ class ContactFragment :BaseFragment(),ContactContract.View{
         initRecyclerView()
 
         EMClient.getInstance().contactManager().setContactListener(contactListener)
+
         initSlideBar()
         presenter.loadContacts()
 

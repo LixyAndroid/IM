@@ -8,9 +8,12 @@ import android.widget.RelativeLayout
 import com.example.im.R
 import com.hyphenate.chat.EMMessage
 import com.hyphenate.chat.EMTextMessageBody
+
+
 import com.hyphenate.util.DateUtils
 import kotlinx.android.synthetic.main.view_send_message_item.view.*
 import java.util.*
+
 
 /**
  * @author  Mloong
@@ -23,6 +26,7 @@ class SendMessageItemView(context: Context?, attrs: AttributeSet? = null) : Rela
 
         updateMessage(emMessage)
 
+        updateProgress(emMessage)
     }
 
     private fun updateMessage(emMessage: EMMessage) {
@@ -34,7 +38,7 @@ class SendMessageItemView(context: Context?, attrs: AttributeSet? = null) : Rela
             sendMessage.text = context.getString(R.string.no_text_message)
         }
 
-        updateProgress(emMessage)
+
 
 
 

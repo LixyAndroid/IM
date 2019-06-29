@@ -9,7 +9,6 @@ import com.hyphenate.exceptions.HyphenateException
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-
 /**
  * @author  Mloong
  * date  2019/6/28 21:29
@@ -46,8 +45,6 @@ class ContactPresenter(val  view: ContactContract.View) :ContactContract.Present
                     IMDatebase.instance.saveContact(contact)
 
                 }
-
-
 
                 uiThread { view.onLoadContactSuccess() }
             }catch (e : HyphenateException){
