@@ -2,6 +2,8 @@ package com.example.im.presenter
 
 import com.example.im.contract.ContactContract
 import com.example.im.data.ContactListItem
+import com.example.im.data.db.Contact
+import com.example.im.data.db.IMDatebase
 import com.hyphenate.chat.EMClient
 import com.hyphenate.exceptions.HyphenateException
 import org.jetbrains.anko.doAsync
@@ -22,6 +24,9 @@ class ContactPresenter(val  view: ContactContract.View) :ContactContract.Present
             //再次加载数据，先清空集合
             contactListItems.clear()
 
+            //清空数据库
+            IMDatebase.instance.deleteAllContacts()
+
             try {
                 val usernames = EMClient.getInstance().contactManager().allContactsFromServer
                 //根据首字符排序
@@ -35,6 +40,11 @@ class ContactPresenter(val  view: ContactContract.View) :ContactContract.Present
                     val  contactListItem = ContactListItem(s,s[0].toUpperCase(),showFirstLetter)
 
                     contactListItems.add(contactListItem)
+
+                    val  contact = Contact(mutableMapOf("name" to s))
+
+                    IMDatebase.instance.saveContact(contact)
+
                 }
 
 

@@ -17,8 +17,20 @@ import kotlinx.android.synthetic.main.view_contact_item.view.userName
 class AddFriendListItemView(context: Context?, attrs: AttributeSet? = null) : RelativeLayout(context, attrs) {
 
     fun bindView(addFriendItem: AddFriendItem) {
+
+        if (addFriendItem.isAdded){
+            add.isEnabled = false
+            add.text = context.getString(R.string.already_added)
+
+        }else{
+            add.isEnabled = true
+            add.text = context.getString(R.string.add)
+
+        }
+
         userName.text = addFriendItem.userName
         timestamp.text = addFriendItem.timestamp
+
     }
 
 
