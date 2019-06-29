@@ -1,7 +1,9 @@
 package com.example.im.data.db
 
 import com.example.im.extentions.toVarargArray
+import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 
 /**
  * @author  Mloong
@@ -24,5 +26,19 @@ class IMDatebase {
         }
 
     }
+
+
+    fun getAllContacts():List<Contact> = databaseHelper.use {
+            select(ContactTable.NAME).parseList(object  : MapRowParser<Contact>{
+
+                override fun parseRow(columns: Map<String, Any?>): Contact {
+
+                    return Contact(columns.toMutableMap())
+                }
+
+            })
+        }
+
+
 
 }
