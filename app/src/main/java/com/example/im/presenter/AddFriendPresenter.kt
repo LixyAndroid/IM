@@ -23,7 +23,9 @@ class AddFriendPresenter(val view: AddFriendActivity) : AddFriendContrat.Present
 
             override fun done(p0: MutableList<BmobUser>?, p1: BmobException?) {
                 if (p1 == null) view.onSearchSuccess()
+
                 else view.onSearchFailed()
+
             }
 
         })
