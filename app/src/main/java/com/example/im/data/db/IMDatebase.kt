@@ -40,5 +40,12 @@ class IMDatebase {
         }
 
 
+    fun  deleteAllContacts(){
+        databaseHelper.use {
+            delete(ContactTable.NAME,null,null)
+        }
+    }
+
+
 
 }
