@@ -9,13 +9,47 @@ import com.hyphenate.chat.EMOptions
 /**
  * @author  Mloong
  * date  2019/6/28 10:40
+ *
+ *
+ *
+ *        ┏┓　　　┏┓
+ *      ┏┛┻━━━┛┻┓
+ *      ┃　　　　　　　┃
+ *      ┃　　　━　　　┃
+ *      ┃　┳┛　┗┳　┃
+ *      ┃　　　　　　　┃
+ *      ┃　　　┻　　　┃
+ *      ┃　　　　　　　┃
+ *      ┗━┓　　　┏━┛
+ *         ┃　　　┃   神兽保佑
+ *         ┃　　　┃   代码无BUG！
+ *         ┃　　　┗━━━┓
+ *         ┃　　　　　　　┣┓
+ *         ┃　　　　　　　┏┛
+ *         ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *
+ *
  */
 class IMApplication :Application() {
+
+
+
+
+    companion object{
+        lateinit var  instance:IMApplication
+    }
+
+
 
     override fun onCreate() {
         super.onCreate()
 
-            val options = EMOptions()
+        instance = this
+
+        val options = EMOptions()
 
 //    // 默认添加好友时，是不需要验证的，改成需要验证
 //    //        options.setAcceptInvitationAlways(false);
@@ -25,9 +59,9 @@ class IMApplication :Application() {
 //    // 是否自动下载附件类消息的缩略图等，默认为 true 这里和上边这个参数相关联
 //            options.setAutoDownloadThumbnail(true)
 
-    //初始化
+         //初始化
         EMClient.getInstance().init(applicationContext, options)
-    //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
+        //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(BuildConfig.DEBUG)
 
         //第一：默认初始化
