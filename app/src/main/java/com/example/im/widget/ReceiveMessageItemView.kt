@@ -9,6 +9,7 @@ import com.hyphenate.chat.EMMessage
 import com.hyphenate.chat.EMTextMessageBody
 import com.hyphenate.util.DateUtils
 import kotlinx.android.synthetic.main.view_receive_message_item.view.*
+import kotlinx.android.synthetic.main.view_receive_message_item.view.timestamp
 import java.util.*
 
 
@@ -18,10 +19,10 @@ import java.util.*
  */
 class ReceiveMessageItemView(context: Context?, attrs: AttributeSet? = null) : RelativeLayout(context, attrs) {
 
-    fun bindView(emMessage: EMMessage) {
+    fun bindView(emMessage: EMMessage, showTimestamp: Boolean) {
 
         updateMessage(emMessage)
-        updateTimestamp(emMessage)
+        updateTimestamp(emMessage,showTimestamp)
 
     }
 
@@ -47,9 +48,16 @@ class ReceiveMessageItemView(context: Context?, attrs: AttributeSet? = null) : R
     }
 
     //时间戳
-    private fun updateTimestamp(emMessage: EMMessage) {
+    private fun updateTimestamp(emMessage: EMMessage, showTimestamp: Boolean) {
 
-        timestamp.text = DateUtils.getTimestampString(Date(emMessage.msgTime))
+        if (showTimestamp){
+
+            timestamp.visibility = View.VISIBLE
+            timestamp.text = DateUtils.getTimestampString(Date(emMessage.msgTime))
+
+        }else timestamp.visibility = View.GONE
+
+
     }
 
 
