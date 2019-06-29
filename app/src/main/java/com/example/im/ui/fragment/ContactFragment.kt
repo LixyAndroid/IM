@@ -76,6 +76,13 @@ class ContactFragment :BaseFragment(),ContactContract.View{
 
             }
 
+
+            override fun onContactAdded(p0: String?) {
+                //重新获取联系人的数据
+                presenter.loadContacts()
+
+            }
+
         })
 
 
