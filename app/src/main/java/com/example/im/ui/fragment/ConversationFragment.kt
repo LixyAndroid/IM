@@ -1,6 +1,9 @@
 package com.example.im.ui.fragment
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.im.R
+import com.example.im.adapter.ConversionListAdapter
+import kotlinx.android.synthetic.main.fragment_conversation.*
 import kotlinx.android.synthetic.main.header.*
 
 /**
@@ -16,7 +19,15 @@ class ConversationFragment :BaseFragment(){
         super.init()
 
         headerTitle.text = getString(R.string.message)
+
+        recyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = ConversionListAdapter(context)
+        }
     }
+
+
 
 
 
