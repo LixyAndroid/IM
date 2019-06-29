@@ -2,10 +2,10 @@ package com.example.im.ui.activity
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.View
-import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.im.R
+import com.example.im.adapter.MessageListAdapter
 import com.example.im.contract.ChatContract
 import com.example.im.presenter.ChatPresenter
 import kotlinx.android.synthetic.main.activity_chat.*
@@ -50,8 +50,19 @@ class ChatActivity:BaseActivity(),ChatContract.View {
         super.init()
         initHeader()
         initEditText()
+
+        initRecyclerView()
         send.setOnClickListener { send() }
 
+    }
+
+    private fun initRecyclerView() {
+        recyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+
+            adapter = MessageListAdapter(context,presenter.messages)
+        }
     }
 
     private  fun send(){
