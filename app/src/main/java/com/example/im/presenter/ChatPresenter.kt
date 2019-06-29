@@ -4,6 +4,8 @@ import com.example.im.adapter.EMCallBackAdapter
 import com.example.im.contract.ChatContract
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * @author  Mloong
@@ -51,6 +53,17 @@ class ChatPresenter(val view: ChatContract.View):ChatContract.Presenter {
 
         conversation.markAllMessagesAsRead()
 
+
+    }
+
+    override fun loadMessages(username: String) {
+
+        doAsync {
+            val  conversation = EMClient.getInstance().chatManager().getConversation(username)
+            messages.addAll(conversation.allMessages)
+
+            uiThread { view.onMessageLoaded() }
+        }
 
     }
 

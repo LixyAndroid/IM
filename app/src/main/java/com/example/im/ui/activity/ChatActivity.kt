@@ -24,6 +24,13 @@ import org.jetbrains.anko.toast
 class ChatActivity:BaseActivity(),ChatContract.View {
 
 
+    override fun onMessageLoaded() {
+        recyclerView.adapter?.notifyDataSetChanged()
+
+        scrollToBottom()
+    }
+
+
     val presenter = ChatPresenter(this)
 
     lateinit var username :String
@@ -90,6 +97,9 @@ class ChatActivity:BaseActivity(),ChatContract.View {
 
         EMClient.getInstance().chatManager().addMessageListener(messageListener)
         send.setOnClickListener { send() }
+
+
+        presenter.loadMessages(username)
 
     }
 

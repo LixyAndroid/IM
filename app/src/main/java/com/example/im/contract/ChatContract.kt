@@ -11,6 +11,10 @@ interface ChatContract {
     interface Presenter : BasePresenter{
         fun sendMessage(contrat:String,message:String)
         fun addMessage(username: String, p0: MutableList<EMMessage>?)
+        fun loadMessages(username: String) {
+
+
+        }
     }
 
 
@@ -18,5 +22,6 @@ interface ChatContract {
         fun onStartSendMessage()
         fun onSendMessageSuccess()
         fun onSendMessageFailed()
+        fun onMessageLoaded()
     }
 }
