@@ -13,6 +13,12 @@ import org.jetbrains.anko.uiThread
  */
 class ChatPresenter(val view: ChatContract.View):ChatContract.Presenter {
 
+
+    //加载更多聊天记录的条数
+    companion object{
+        val  PAGE_SIZE = 20
+    }
+
     val messages = mutableListOf<EMMessage>()
 
 
@@ -64,6 +70,22 @@ class ChatPresenter(val view: ChatContract.View):ChatContract.Presenter {
 
             uiThread { view.onMessageLoaded() }
         }
+
+    }
+
+
+    override fun loadMoreMessages(username: String) {
+
+        doAsync {
+            val  conversation = EMClient.getInstance().chatManager().getConversation(username)
+            val startMsgId = messages[0].msgId
+            val loadMoreMsgFromDB = conversation.loadMoreMsgFromDB(startMsgId, PAGE_SIZE)
+
+            messages.addAll(0,loadMoreMsgFromDB)
+
+            uiThread { view.onMoreMessageLoaded(loadMoreMsgFromDB.size) }
+        }
+
 
     }
 
