@@ -1,9 +1,6 @@
 package com.example.im.app
 
-import android.app.ActivityManager
-import android.app.Application
-import android.app.Notification
-import android.app.NotificationManager
+import android.app.*
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.media.MediaPlayer
@@ -18,13 +15,9 @@ import com.hyphenate.chat.EMTextMessageBody
 
 
 import androidx.core.app.NotificationCompat
-import android.app.NotificationChannel
+import android.content.Intent
 import android.os.Build
-
-
-
-
-
+import com.example.im.ui.activity.ChatActivity
 
 
 /**
@@ -115,6 +108,10 @@ class IMApplication :Application() {
             }
 
 
+            val intent = Intent(this,ChatActivity::class.java)
+            intent.putExtra("username",it.conversationId())
+            val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
+
             if (Build.VERSION.SDK_INT >= 26) {
                 //当sdk版本大于26
                 val id = "channel_1"
@@ -129,7 +126,8 @@ class IMApplication :Application() {
                     .setContentText(contentText)
                     .setLargeIcon(BitmapFactory.decodeResource(resources,R.mipmap.avatar1))
                     .setSmallIcon(R.mipmap.ic_contact)
-                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent) //点击跳转到聊天页面
+                    .setAutoCancel(true) //点击自动消失
                     .build()
                 notificationManager.notify(1, notification)
             } else {
@@ -139,7 +137,8 @@ class IMApplication :Application() {
                     .setContentText(contentText)
                     .setLargeIcon(BitmapFactory.decodeResource(resources,R.mipmap.avatar1))
                     .setSmallIcon(R.mipmap.ic_contact)
-                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent) //点击跳转到聊天页面
+                    .setAutoCancel(true) //点击自动消失
                     .build()
                 notificationManager.notify(1, notification)
             }
