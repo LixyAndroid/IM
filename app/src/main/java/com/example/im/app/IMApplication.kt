@@ -17,6 +17,7 @@ import com.hyphenate.chat.EMTextMessageBody
 import androidx.core.app.NotificationCompat
 import android.content.Intent
 import android.os.Build
+import androidx.core.app.TaskStackBuilder
 import com.example.im.ui.activity.ChatActivity
 
 
@@ -110,7 +111,12 @@ class IMApplication :Application() {
 
             val intent = Intent(this,ChatActivity::class.java)
             intent.putExtra("username",it.conversationId())
-            val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
+         //   val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+
+            val taskStackBuilder = TaskStackBuilder.create(this).addParentStack(ChatActivity::class.java).addNextIntent(intent)
+
+            val pendingIntent = taskStackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT)
 
             if (Build.VERSION.SDK_INT >= 26) {
                 //当sdk版本大于26
