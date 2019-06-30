@@ -3,7 +3,9 @@ package com.example.im.app
 import android.app.Application
 import cn.bmob.v3.Bmob
 import com.example.im.BuildConfig
+import com.example.im.adapter.EMMessageListenerAdapter
 import com.hyphenate.chat.EMClient
+import com.hyphenate.chat.EMMessage
 import com.hyphenate.chat.EMOptions
 
 /**
@@ -43,6 +45,15 @@ class IMApplication :Application() {
     }
 
 
+    val messageListener = object  :EMMessageListenerAdapter(){
+        override fun onMessageReceived(p0: MutableList<EMMessage>?) {
+            //如果在前台则播放短的声音
+            //如果在后台则播放长的声音
+
+
+        }
+    }
+
 
     override fun onCreate() {
         super.onCreate()
@@ -66,5 +77,13 @@ class IMApplication :Application() {
 
         //第一：默认初始化
         Bmob.initialize(this, "2887467008a23530373c4c5ca79772ee")
+
+
+
+        EMClient.getInstance().chatManager().addMessageListener(messageListener)
     }
+
+
+
+
 }
