@@ -36,7 +36,7 @@
     <string name="send_message_success">发送消息成功</string>
     <string name="no_text_message">非文本消息</string>
     <string name="receive_new_message">收到新消息</string>
-    <string name="user_login_another_device">用户在其他设备登录</string>
+    <string name="user_login_another_device">用户在其他设备登录，此客户端已退出登录</string>
     <string name="user_already_exist">用户已存在</string>
     <string name="register_success">注册成功</string>
     <string name="logout_success">退出登录成功</string>
