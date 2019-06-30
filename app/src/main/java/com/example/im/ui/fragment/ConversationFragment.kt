@@ -3,8 +3,12 @@ package com.example.im.ui.fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.im.R
 import com.example.im.adapter.ConversionListAdapter
+import com.hyphenate.chat.EMClient
+import com.hyphenate.chat.EMConversation
 import kotlinx.android.synthetic.main.fragment_conversation.*
 import kotlinx.android.synthetic.main.header.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * @author  Mloong
@@ -12,6 +16,8 @@ import kotlinx.android.synthetic.main.header.*
  */
 
 class ConversationFragment :BaseFragment(){
+
+    val conversations = mutableListOf<EMConversation>()
 
     override fun getLayoutResId(): Int  = R.layout.fragment_conversation
 
@@ -23,12 +29,29 @@ class ConversationFragment :BaseFragment(){
         recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = ConversionListAdapter(context)
+            adapter = ConversionListAdapter(context,conversations)
         }
+
+
+        loadConversations()
+
     }
 
+    private fun loadConversations() {
 
+        doAsync {
 
+            val allConversations = EMClient.getInstance().chatManager().allConversations
+
+            conversations.addAll(allConversations.values)
+
+            uiThread {
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+
+        }
+
+    }
 
 
 }
