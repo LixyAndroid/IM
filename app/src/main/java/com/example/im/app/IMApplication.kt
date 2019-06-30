@@ -1,6 +1,8 @@
 package com.example.im.app
 
+import android.app.ActivityManager
 import android.app.Application
+import android.content.Context
 import cn.bmob.v3.Bmob
 import com.example.im.BuildConfig
 import com.example.im.adapter.EMMessageListenerAdapter
@@ -48,6 +50,7 @@ class IMApplication :Application() {
     val messageListener = object  :EMMessageListenerAdapter(){
         override fun onMessageReceived(p0: MutableList<EMMessage>?) {
             //如果在前台则播放短的声音
+
             //如果在后台则播放长的声音
 
 
@@ -84,6 +87,20 @@ class IMApplication :Application() {
     }
 
 
+    //判断app是否在前台
+    private fun isPoreground() :Boolean{
+        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+
+        for (runningAppProgress in activityManager.runningAppProcesses ){
+            if (runningAppProgress.processName == packageName){
+                //找到了app的进程
+
+                return    runningAppProgress.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
+            }
+
+        }
+        return  false
+    }
 
 
 }
