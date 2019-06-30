@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
 
     <include layout="@layout/header"/>
 
+    <com.lqr.optionitemview.OptionItemView
+            android:id="@+id/chatRoomOptionItemView"
+            style="@style/OptionItem"
+            android:layout_marginTop="@dimen/option_item_margin_top"
+            android:background="@drawable/selector_common_item"
+            app:left_image_margin_left="@dimen/option_item_margin_left"
+            app:left_image_margin_right="@dimen/option_item_margin_right"
+            app:left_src="@mipmap/ic_new_friend"
+            app:left_text="新的朋友"
+            app:left_text_color="@color/black"
+            app:left_text_size="16sp" />
+
+    <com.lqr.optionitemview.OptionItemView
+            android:id="@+id/robotOptionItemView"
+            style="@style/OptionItem"
+            android:layout_marginTop="@dimen/option_item_margin_top"
+            android:background="@drawable/selector_common_item"
+            app:left_image_margin_left="@dimen/option_item_margin_left"
+            app:left_image_margin_right="@dimen/option_item_margin_right"
+            app:left_src="@mipmap/ic_group_cheat"
+            app:left_text="群聊"
+            app:left_text_color="@color/black"
+            app:left_text_size="16sp" />
+
+    <com.lqr.optionitemview.OptionItemView
+            android:id="@+id/channelOptionItemView"
+            style="@style/OptionItem"
+            android:layout_marginTop="@dimen/option_item_margin_top"
+            android:background="@drawable/selector_common_item"
+            app:left_image_margin_left="@dimen/option_item_margin_left"
+            app:left_image_margin_right="@dimen/option_item_margin_right"
+            app:left_src="@mipmap/ic_tag"
+            app:left_text="标签"
+            app:left_text_color="@color/black"
+            app:left_text_size="16sp" />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

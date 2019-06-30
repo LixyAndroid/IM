@@ -26,14 +26,13 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
 
     companion object {
         private val SECTIONS = arrayOf("↑","♥","A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-            "K", "L","M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z","#")
+            "K", "L","M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
     }
 
     init {
         paint.apply {
             color = resources.getColor(R.color.qq_section_text_color)
             textSize = sp(12).toFloat()
-
             //对齐居中
             textAlign = Paint.Align.CENTER
         }

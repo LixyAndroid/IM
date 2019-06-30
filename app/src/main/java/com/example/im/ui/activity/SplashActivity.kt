@@ -26,7 +26,6 @@ class SplashActivity : BaseActivity() ,SplashContract.View{
         super.init()
 
         presenter.checkLoginStatus()
-
     }
 
 

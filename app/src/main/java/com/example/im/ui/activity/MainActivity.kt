@@ -9,7 +9,6 @@ import com.hyphenate.EMError
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -24,7 +23,6 @@ class MainActivity : BaseActivity() {
         }
     }
 
-
     override fun getLayoutReId(): Int = R.layout.activity_main
 
     override fun init() {
@@ -37,7 +35,6 @@ class MainActivity : BaseActivity() {
             beginTransaction.commit()
 
         }
-
 
         EMClient.getInstance().chatManager().addMessageListener(messageListener)
 
@@ -66,14 +63,12 @@ class MainActivity : BaseActivity() {
         })
     }
 
-
     override fun onResume() {
         super.onResume()
 
         updateBottomBarUnReadCount()
 
     }
-
 
     private fun updateBottomBarUnReadCount(){
 

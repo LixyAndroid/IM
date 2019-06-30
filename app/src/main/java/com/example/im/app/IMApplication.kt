@@ -127,6 +127,7 @@ class IMApplication :Application() {
                 //                     channel.enableLights(true);
                 //                     channel.enableVibration(true);//
                 notificationManager.createNotificationChannel(channel)
+
                 val notification = Notification.Builder(instance, id)
                     .setContentTitle(getString(R.string.receive_new_message))
                     .setContentText(contentText)
@@ -150,6 +151,7 @@ class IMApplication :Application() {
             }
 
         }
+
 
 
 

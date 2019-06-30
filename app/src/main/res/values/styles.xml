@@ -8,8 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.FullScreen" parent="AppTheme">
+    <!--全屏样式-->
+    <style name="AppTheme.FullScreen">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--选项条目样式-->
+    <style name="OptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>
