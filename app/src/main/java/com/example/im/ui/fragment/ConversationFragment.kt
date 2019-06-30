@@ -72,6 +72,14 @@ class ConversationFragment :BaseFragment(){
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+
+        loadConversations()
+    }
+
+
     override fun onDestroy() {
 
         super.onDestroy()

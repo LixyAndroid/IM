@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.im.ui.activity.ChatActivity
 import com.example.im.widget.ConversationListItemView
 import com.hyphenate.chat.EMConversation
+import org.jetbrains.anko.startActivity
 
 /**
  * @author  Mloong
@@ -28,6 +30,10 @@ class ConversionListAdapter(val context: Context, val conversations: MutableList
 
         val conversationListItemView = holder.itemView as ConversationListItemView
         conversationListItemView.bindView(conversations[position])
+
+        conversationListItemView.setOnClickListener { context.startActivity<ChatActivity>(
+            "username" to conversations[position].conversationId()
+        ) }
 
     }
 
