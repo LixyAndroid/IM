@@ -89,6 +89,7 @@ class ChatActivity:BaseActivity(),ChatContract.View {
     override fun onDestroy() {
         super.onDestroy()
         EMClient.getInstance().chatManager().removeMessageListener(messageListener)
+
     }
 
 

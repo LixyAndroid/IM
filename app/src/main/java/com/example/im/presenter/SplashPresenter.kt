@@ -1,6 +1,5 @@
 package com.example.im.presenter
 
-import android.view.View
 import com.example.im.contract.SplashContract
 import com.hyphenate.chat.EMClient
 

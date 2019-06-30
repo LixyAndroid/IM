@@ -2,7 +2,10 @@ package com.example.im.app
 
 import android.app.ActivityManager
 import android.app.Application
+import android.app.Notification
+import android.app.NotificationManager
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import cn.bmob.v3.Bmob
 import com.example.im.BuildConfig
@@ -11,6 +14,17 @@ import com.example.im.adapter.EMMessageListenerAdapter
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
 import com.hyphenate.chat.EMOptions
+import com.hyphenate.chat.EMTextMessageBody
+
+
+import androidx.core.app.NotificationCompat
+import android.app.NotificationChannel
+import android.os.Build
+
+
+
+
+
 
 
 /**
@@ -44,11 +58,11 @@ import com.hyphenate.chat.EMOptions
 class IMApplication :Application() {
 
 
+    lateinit var player :MediaPlayer
+
     companion object{
         lateinit var  instance:IMApplication
     }
-
-
 
 
 
@@ -57,18 +71,85 @@ class IMApplication :Application() {
 
               //如果在前台则播放短的声音
             if (isForeground()){
-                val player  =    MediaPlayer.create(instance,R.raw.duan)
+                 player = MediaPlayer.create(instance,R.raw.duan)
+                player.stop()
+                player.prepare()
+
                 player.start()
+
+
             }
             else{
               //如果在后台台则播放长的声音
-                val player  =    MediaPlayer.create(instance,R.raw.yulu)
+                player = MediaPlayer.create(instance,R.raw.yulu)
+
+                player.stop()
+                player.prepare()
                 player.start()
+
+                showNotification(p0)
 
             }
 
 
+
         }
+
+
+
+
+    }
+
+
+
+    private fun showNotification(p0: MutableList<EMMessage>?) {
+
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+
+        p0?.forEach {
+            var contentText = getString(R.string.no_text_message)
+            if (it.type == EMMessage.Type.TXT){
+                contentText = (it.body as EMTextMessageBody).message
+            }
+
+
+            if (Build.VERSION.SDK_INT >= 26) {
+                //当sdk版本大于26
+                val id = "channel_1"
+                val description = "143"
+                val importance = NotificationManager.IMPORTANCE_LOW
+                val channel = NotificationChannel(id, description, importance)
+                //                     channel.enableLights(true);
+                //                     channel.enableVibration(true);//
+                notificationManager.createNotificationChannel(channel)
+                val notification = Notification.Builder(instance, id)
+                    .setContentTitle(getString(R.string.receive_new_message))
+                    .setContentText(contentText)
+                    .setLargeIcon(BitmapFactory.decodeResource(resources,R.mipmap.avatar1))
+                    .setSmallIcon(R.mipmap.ic_contact)
+                    .setAutoCancel(true)
+                    .build()
+                notificationManager.notify(1, notification)
+            } else {
+                //当sdk版本小于26
+                val notification = NotificationCompat.Builder(instance)
+                    .setContentTitle(getString(R.string.receive_new_message))
+                    .setContentText(contentText)
+                    .setLargeIcon(BitmapFactory.decodeResource(resources,R.mipmap.avatar1))
+                    .setSmallIcon(R.mipmap.ic_contact)
+                    .setAutoCancel(true)
+                    .build()
+                notificationManager.notify(1, notification)
+            }
+
+        }
+
+
+
+
+
     }
 
 
@@ -104,6 +185,9 @@ class IMApplication :Application() {
         }
         return  false
     }
+
+
+
 
 
 }
