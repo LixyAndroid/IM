@@ -46,8 +46,8 @@ class ConversationFragment :BaseFragment(){
 
         EMClient.getInstance().chatManager().addMessageListener(messageListener)
 
-
-        loadConversations()
+        //不必要再加载
+  //      loadConversations()
 
     }
 
