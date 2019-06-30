@@ -25,6 +25,10 @@ class ConversionListAdapter(val context: Context, val conversations: MutableList
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
+
+        val conversationListItemView = holder.itemView as ConversationListItemView
+        conversationListItemView.bindView(conversations[position])
+
     }
 
 
