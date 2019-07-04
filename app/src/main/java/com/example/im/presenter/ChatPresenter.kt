@@ -72,7 +72,7 @@ class ChatPresenter(val view: ChatContract.View):ChatContract.Presenter {
             val  conversation = EMClient.getInstance().chatManager().getConversation(username)
 
             //将加载的消息标记为已读
-            conversation.markAllMessagesAsRead()
+            conversation?.markAllMessagesAsRead()
             messages.addAll(conversation.allMessages)
 
             uiThread { view.onMessageLoaded() }

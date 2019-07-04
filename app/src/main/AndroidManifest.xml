@@ -29,8 +29,6 @@
             android:theme="@style/AppTheme"
             android:name=".app.IMApplication">
 
-
-
         <activity android:name=".ui.activity.MainActivity">
 
         </activity>
